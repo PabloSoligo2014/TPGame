@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="TPGame" />
+		<Option title="UnitTests" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -30,15 +30,18 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="./SDL2/include/SDL2" />
 			<Add directory="./SDL2/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-lSDL2" />
 			<Add option="-lSDL2main" />
+			<Add library="./SDL2_Image/lib/libSDL2_image.dll.a" />
+			<Add library="./SDL2/lib/libSDL2.dll.a" />
 			<Add directory="./SDL2/lib" />
+			<Add directory="./SDL2_Image/lib" />
 		</Linker>
-		<Unit filename="main.c">
+		<Unit filename="minunit.h" />
+		<Unit filename="uTestMain.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions />
