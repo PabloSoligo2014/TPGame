@@ -15,4 +15,7 @@ Por otro lado muchos de los tópicos de la asignatura incluyen el desarrollo de 
 puede ofrecer una vision acotada del alcance de los temas revisados. Con el trabajo
 práctico se pretende que los alumnos usen y verifiquen la necesidad de tener estructuras de datos genéricas para poder aplicar a distintas problematicas.
 
+## Bibliografía recomendada
+Mitchell, S. (2013). SDL Game Development. Packt Publishing Ltd.
+
 ### Alumnos Comisión 04-3600. Miercoles TT. Año 2025
