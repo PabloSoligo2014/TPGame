@@ -19,11 +19,11 @@ práctico se pretende que los alumnos usen y verifiquen la necesidad de tener es
 Mitchell, S. (2013). SDL Game Development. Packt Publishing Ltd.
 
 ### Alumnos Comisión 04-3600. Miercoles TT. Año 2025
-LAZARTE, ULISES LAUTARO
-MENDEZ, SAMUEL OMAR
-BORJA, TOMAS HERNAN
-AYALA BUSTOS, GUSTAVO GABRIEL
-IBARRA, GONZALO IVAN
-ROBELIN, FEDERICO NICOLAS
+LAZARTE, ULISES LAUTARO</BR>
+MENDEZ, SAMUEL OMAR</BR>
+BORJA, TOMAS HERNAN</BR>
+AYALA BUSTOS, GUSTAVO GABRIEL</BR>
+IBARRA, GONZALO IVAN</BR>
+ROBELIN, FEDERICO NICOLAS</BR>
 
 ### Alumno Colaborador Comisión 02-2600. Martes TT. Año 2025
