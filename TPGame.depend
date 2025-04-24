@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1745067036 source:d:\git\tpgame\main.c
+1745522937 source:d:\git\tpgame\main.c
 	<stdio.h>
 	<stdlib.h>
 	<unistd.h>
 	<SDL2/SDL_main.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_Image.h>
+	"structures/Game.h"
 
 1720194199 d:\git\tpgame\sdl2\include\sdl2\sdl_main.h
 	"SDL_stdinc.h"
@@ -406,4 +407,16 @@
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
+
+1745522969 source:d:\git\tpgame\structures\game.c
+	<stdlib.h>
+	<stdio.h>
+	"Game.h"
+
+1745522794 d:\git\tpgame\structures\game.h
+	<stdbool.h>
+	"Entities.h"
+	<SDL2/SDL.h>
+
+1745522642 d:\git\tpgame\structures\entities.h
 

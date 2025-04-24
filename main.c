@@ -11,8 +11,7 @@
 
 #include "structures/Game.h"
 
-/**
-Pablo Soligo. Plantilla de proyecto codeblocks para proyectos SDL.
+/*Pablo Soligo. Plantilla de proyecto codeblocks para proyectos SDL.
 Funciona con mingw 64 bits y no requiere tener instalado SDL.
 Los fuentes son multiplataforma (windows/linux Debian;Ubuntu). Para ubuntu se
 requiere de diferente configuraci�n de proyecto.
@@ -20,15 +19,6 @@ Esto compila al solo efecto de demostrar que estan los enlaces correctamente
 configurados a la biblioteca SDL.
 */
 
-void drawFilledCircle(SDL_Renderer* renderer, int cx, int cy, int radius) {
-    for (int y = -radius; y <= radius; y++) {
-        for (int x = -radius; x <= radius; x++) {
-            if (x*x + y*y <= radius*radius) {
-                SDL_RenderDrawPoint(renderer, cx + x, cy + y);
-            }
-        }
-    }
-}
 
 
 int main(int argc, char *argv[])

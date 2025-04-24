@@ -3,7 +3,7 @@
 
 #include<stdbool.h>
 #include "Entities.h"
-#include <SDL2/SDL.h>l
+#include <SDL2/SDL.h>
 
 typedef struct{
     SDL_Window* window;

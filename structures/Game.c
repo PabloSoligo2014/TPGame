@@ -1,5 +1,19 @@
 #include <stdlib.h>
+
+#include <stdio.h> //there is a put call...will disappear, but now it is
 #include "Game.h"
+
+//This function will disappear, just for test
+void drawFilledCircle(SDL_Renderer* renderer, int cx, int cy, int radius) {
+    for (int y = -radius; y <= radius; y++) {
+        for (int x = -radius; x <= radius; x++) {
+            if (x*x + y*y <= radius*radius) {
+                SDL_RenderDrawPoint(renderer, cx + x, cy + y);
+            }
+        }
+    }
+}
+
 
 Game* Game_create(){
     Game* game = (Game*)malloc(sizeof(Game));
