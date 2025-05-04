@@ -46,6 +46,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="structures/Game.h" />
+		<Unit filename="structures/Vector.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="structures/Vector.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
