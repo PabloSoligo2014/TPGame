@@ -1,36 +1,39 @@
-#include<Vector.h>
+#include "Vector.h"
 
-int crearVector(Vector*vector, unsigned tamVector){
+int Vector_create(Vector*v, unsigned tamVector){
 
-   vector->vec = malloc(tamVector*(sizeof(tNodo)));
-   if(!vector->vec){
+   v->vec = malloc(tamVector*(sizeof(tNodo)));
+   if(!v->vec){
     return 0;
    }
 
-   vector->ce = 0;
-   vector->tam = tamVector;
+   v->ce = 0;
+   v->tam = tamVector;
 
    return 1;
 }
-void destruirVector(Vector*vector){
-    free(vector->vec);
+void Vector_destroy(Vector*v){
+    free(v->vec);
 }
 
-int insertarOrdenadoTDA(Vector* vector,void*nuevoNodo,Cmp cmp){
-   if(vector->ce == vector->tam){
-      if(redimensionarTDA(vector,(vector->tam+2))==-1){
+//return -1,No hay memoria
+//return 1 Inserto Directamente
+//return 2 Inserto e incremento la cantidad de elementos
+int Vector_insertInOrder(Vector* v,void*nuevoNodo,Cmp cmp){
+   if(v->ce == v->tam){
+      if(_resize(v,(v->tam+2))==-1){
          return -1;
       }
    }
-   void*pos = vector->vec; //se guarda la primer pos
+   void*pos = v->vec; //se guarda la primer pos
 
-   if(vector->ce == 0){ //si no hay elementos inserta directamente
+   if(v->ce == 0){ //si no hay elementos inserta directamente
      memcpy(pos,nuevoNodo,sizeof(tNodo));
-     vector->ce++;
+     v->ce++;
      return 1;
    }
 
-   void* ultPos = pos +( (vector->ce)*sizeof(tNodo)); //guardo la ultima posicion
+   void* ultPos = pos +( (v->ce)*sizeof(tNodo)); //guardo la ultima posicion
 
    while( pos<ultPos && cmp(nuevoNodo , ultPos - sizeof(tNodo)) == 1 ){//nuevoNodo<ultPos retorna 1
      memcpy(ultPos,ultPos - sizeof(tNodo),sizeof(tNodo));
@@ -38,17 +41,17 @@ int insertarOrdenadoTDA(Vector* vector,void*nuevoNodo,Cmp cmp){
    }
 
     memcpy(ultPos,nuevoNodo,sizeof(tNodo));
-    vector->ce++;
+    v->ce++;
     return 2; //se inserto y se aumento
 }
 
-int redimensionarTDA(Vector* vector,size_t nuevoTamanio){
+int _resize(Vector* v,size_t nuevoTamanio){
 
-  void * nv = realloc((void*)vector->vec,nuevoTamanio*(sizeof(tNodo)));
+  void * nv = realloc((void*)v->vec,nuevoTamanio*(sizeof(tNodo)));
   if(nv == NULL){
     return -1;
   }
-  vector->vec = (tNodo*)nv;
-  vector->tam = nuevoTamanio;
+  v->vec = (tNodo*)nv;
+  v->tam = nuevoTamanio;
   return 1;
 }
