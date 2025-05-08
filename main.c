@@ -43,16 +43,12 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-int compararInt(const void*a,const void*b){//si a < b retorna 1
+int compararInt(const void*a,const void*b){
     tNodo* dato1 = ((tNodo*)a);
     tNodo* dato2 = ((tNodo*)b);
 
     int a1 = *(int*)(dato1->dato);
     int b1 = *(int*)(dato2->dato);
 
-    if(a1<b1){
-        return 1;
-    }else{
-        return 0;
-    }
+    return (a1-b1);
 }
