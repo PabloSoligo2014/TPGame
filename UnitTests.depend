@@ -1,11 +1,13 @@
 # depslib dependency file v1.0
-1745069886 source:d:\git\tpgame\utestmain.c
+1746717013 source:d:\git\tpgame\utestmain.c
 	<stdio.h>
 	<stdlib.h>
 	<unistd.h>
 	<SDL2/SDL_main.h>
 	<SDL2/SDL.h>
 	<SDL2/SDL_Image.h>
+	"test_utils.h"
+	"structures/Vector.h"
 	"minunit.h"
 
 1720194199 d:\git\tpgame\sdl2\include\sdl2\sdl_main.h
@@ -420,4 +422,20 @@
 	<mach/mach_time.h>
 	<stdio.h>
 	<math.h>
+
+1746714942 source:d:\git\tpgame\structures\vector.c
+	"Vector.h"
+
+1746714335 d:\git\tpgame\structures\vector.h
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1746714826 source:d:\git\tpgame\vector_unit_test.c
+
+1746714942 d:\git\tpgame\vector_unit_test.h
+
+1746715850 source:d:\git\tpgame\test_utils.c
+
+1746715794 d:\git\tpgame\test_utils.h
 

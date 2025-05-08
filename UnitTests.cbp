@@ -41,6 +41,14 @@
 			<Add directory="./SDL2_Image/lib" />
 		</Linker>
 		<Unit filename="minunit.h" />
+		<Unit filename="structures/Vector.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="structures/Vector.h" />
+		<Unit filename="test_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="test_utils.h" />
 		<Unit filename="uTestMain.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -27,6 +27,7 @@ int Vector_insertInOrder(Vector* v,void*nuevoNodo,Cmp cmp){
    }
    void*pos = v->vec; //se guarda la primer pos
 
+   // TODO: Is this specific condition necessary? I don't think so.
    if(v->ce == 0){ //si no hay elementos inserta directamente
      memcpy(pos,nuevoNodo,sizeof(tNodo));
      v->ce++;
