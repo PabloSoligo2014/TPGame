@@ -13,6 +13,8 @@
 #include "structures/Vector.h"
 #include "minunit.h"
 
+#define TEMPORAL_COMPILE //Quitar luego de arreglar los prototipos
+
 int sumar(int a, int b){
     return a+b;
 }
@@ -39,7 +41,7 @@ MU_TEST(test_vector_create){
 MU_TEST(test_vector_insert_int){
     //char* errorMsg = "Error en la funcion de suma";
     Vector vector;
-    int valor;
+    int valor = 0;
     int i;
     int r;
     int vtest[]             = {3,6,9,15,8,1,16};
@@ -55,8 +57,10 @@ MU_TEST(test_vector_insert_int){
         //solo quiere guardar y recuperar cosas. En este test, son simples enteros
         //Asi que de entrada hay que arreglar esto,
 
-        //TODO: arreglar prototipo y descomentar!
+        //TODO: arreglar prototipo quitar macro
+        #ifndef TEMPORAL_COMPILE
         Vector_insertInOrder(&vector, pvtest, sizeof(*pvtest), cmp_int);
+        #endif // TEMPORAL_COMPILE
 
         pvtest++;
         //Aca hay mas controles que hacer en test previos...
@@ -77,11 +81,13 @@ MU_TEST(test_vector_insert_int){
         //4.Tamanio, eso les va parecer no necesario porque esta en el nodo, si, tiene un poco
         //de razon pero hay casos donde el elemento tiene tamaño variable, ya lo veremos.
 
+        #ifndef TEMPORAL_COMPILE
         Vector_getByPos(&vector, i, &valor, sizeof(valor));
+        #endif // TEMPORAL_COMPILE
 
         //Lo que obtuve del Vector tiene que coincidir perfectamente con el vector de test ordenado
 
-        mu_assert( *pvtest==valor, "Post a description of the bug here");
+        mu_assert( *pvtest==valor, "write a description of the bug here");
         pvtest++;
     }
 
