@@ -56,7 +56,7 @@ MU_TEST(test_vector_insert_int){
         //Asi que de entrada hay que arreglar esto,
 
         //TODO: arreglar prototipo y descomentar!
-        Vector_insertInOrder(&vector, pvtest, sizeof(pvtest), cmp_int);
+        Vector_insertInOrder(&vector, pvtest, sizeof(*pvtest), cmp_int);
 
         pvtest++;
         //Aca hay mas controles que hacer en test previos...
