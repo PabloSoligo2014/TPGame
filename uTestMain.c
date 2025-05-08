@@ -50,13 +50,13 @@ MU_TEST(test_vector_insert_int){
 
     //Tiene que funcionar con cualquier tipo de dato
     for(i=0;i<sizeof(vtest)/sizeof(*vtest);i++){
-        //Lo pongo en español: El prototipo de la funcion deberia ser asi
+        //Lo pongo en espaÃ±ol: El prototipo de la funcion deberia ser asi
         //el usuario de Vector no tiene ni idea de que es un nodo, no le importa
         //solo quiere guardar y recuperar cosas. En este test, son simples enteros
         //Asi que de entrada hay que arreglar esto,
 
         //TODO: arreglar prototipo y descomentar!
-        Vector_insertInOrder(&vector, *pvtest, sizeof(pvtest), cmp_int);
+        Vector_insertInOrder(&vector, pvtest, sizeof(pvtest), cmp_int);
 
         pvtest++;
         //Aca hay mas controles que hacer en test previos...
@@ -68,14 +68,14 @@ MU_TEST(test_vector_insert_int){
     pvtest = vtest;//Lo vuelvo a apuntar al vector de test
 
 
-    //Mi vector de test esta ordenado (qsort) funciona. ¿El TDA Vector inserto ordenadamente?
+    //Mi vector de test esta ordenado (qsort) funciona. Â¿El TDA Vector inserto ordenadamente?
     for(i=0;i<sizeof(vtest)/sizeof(*vtest);i++){
         //Argumentos
         //1.Vector
         //2.Posicion de lo que quiero
         //3.Buffer/posicion de memoria donde dejarme lo que esta en el vector
         //4.Tamanio, eso les va parecer no necesario porque esta en el nodo, si, tiene un poco
-        //de razon pero hay casos donde el elemento tiene tamaño variable, ya lo veremos.
+        //de razon pero hay casos donde el elemento tiene tamaÃ±o variable, ya lo veremos.
 
         Vector_getByPos(&vector, i, &valor, sizeof(valor));
 
