@@ -20,7 +20,7 @@ configurados a la biblioteca SDL.
 */
 
 int main(int argc, char *argv[]){
-    /*
+
     //Codigo prueba del bsearch
     //Invito a probarlo
     Vector v;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
         printf("%d - ", *(int*)(((tNodo*)v.vec[i].dato)));
     }
 
-    */
+    /*
     Game* game=Game_create();
     Game_init(game,"La IEEE 754 llego al barrio",
                                                 SDL_WINDOWPOS_UNDEFINED,
@@ -65,6 +65,6 @@ int main(int argc, char *argv[]){
     }
 
     Game_clean(game);
-    return 0;
+    */return 0;
 }
 
