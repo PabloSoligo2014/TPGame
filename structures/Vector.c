@@ -16,36 +16,55 @@ void Vector_destroy(Vector*v){
     free(v->vec);
 }
 
-int Vector_insertInOrder(Vector* v,void*elemento,size_t tamDato,Cmp cmp){
-   tNodo nodo;
-   nodo.dato = (void*)elemento;
-   nodo.tam = tamDato;
+// Función para insertar en orden
+int Vector_insertInOrder(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
+    tNodo nodo;
+    nodo.dato = malloc(tamDato);  // Reservamos memoria para el nuevo dato
+    if (!nodo.dato) return -1;
 
-   if(v->ce == v->tam){
-      if(_resize(v,(v->tam+2))==-1){
-         return -1;
-      }
-   }
-   void*pos = v->vec;
+    memcpy(nodo.dato, elemento, tamDato);
+    nodo.tam = tamDato;
 
-   if(v->ce == 0){
-     memcpy(pos,&nodo,sizeof(tNodo));
-     v->ce++;
-     return 1;
-   }
+    // Verificar si hay espacio para el nuevo elemento
+    if (v->ce == v->tam) {
+        if (_resize(v, v->tam + 2) == -1) {
+            free(nodo.dato);  // Liberamos la memoria si falla el redimensionado
+            return -1;
+        }
+    }
 
-   void* ultPos = pos +( (v->ce)*sizeof(tNodo));
+    // Desplazamos los elementos mayores
+    int i = v->ce - 1;
+    while (i >= 0 && cmp(&nodo, &v->vec[i]) < 0) {
+        v->vec[i + 1] = v->vec[i];
+        i--;
+    }
 
-   while( pos<ultPos && cmp(&nodo , (ultPos - sizeof(tNodo))) < 0 ){
-     memcpy(ultPos,ultPos - sizeof(tNodo),sizeof(tNodo));
-     ultPos-=sizeof(tNodo);
-   }
+    // Insertamos el nuevo nodo
+    v->vec[i + 1] = nodo;
+    v->ce++;
 
-   memcpy(ultPos,&nodo,sizeof(tNodo));
-   v->ce++;
-   return 2;
+    return 1;
 }
+// Función de búsqueda binaria
+tNodo* Vector_bsearch(Vector* v, void* valor, Cmp cmp) {
+    tNodo* base = v->vec;
+    int ini = 0;
+    int fin = v->ce - 1;
 
+    while (ini <= fin) {
+        int medio = ini + (fin - ini) / 2;
+        int comp = cmp(valor, &base[medio]);
+        if (comp == 0) {
+            return &base[medio];  // Se encontró el valor
+        } else if (comp > 0) {
+            ini = medio + 1;
+        } else {
+            fin = medio - 1;
+        }
+    }
+    return NULL;  // No se encontró el valor
+}
 int Vector_getByPos(Vector* v, int pos, void * valor, size_t tamValor){
 
     tNodo * ini = ((v->vec) + pos);
@@ -73,4 +92,20 @@ int _resize(Vector* v,size_t nuevoTamanio){
   v->vec = (tNodo*)nv;
   v->tam = nuevoTamanio;
   return 1;
+}
+
+// Función de comparación de un valor y un Nodo
+int compararIntOneCast(const void* a, const void* b) {
+    int valorBuscado = *(int*)a;
+    tNodo* nodo = (tNodo*)b;
+    int valorNodo = *(int*)(nodo->dato);
+    return valorBuscado - valorNodo;
+}
+//Función de comparación entre dos Nodos
+int compararIntBothCast(const void* a, const void* b) {
+    tNodo* nodoA = (tNodo*)a;
+    int valorBuscado = *(int*)(nodoA->dato);
+    tNodo* nodoB = (tNodo*)b;
+    int valorNodo = *(int*)(nodoB->dato);
+    return valorBuscado - valorNodo;
 }

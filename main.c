@@ -8,7 +8,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_Image.h>
-
+#include "structures/Vector.h"
 #include "structures/Game.h"
 
 /*Pablo Soligo. Plantilla de proyecto codeblocks para proyectos SDL.
@@ -19,10 +19,36 @@ Esto compila al solo efecto de demostrar que estan los enlaces correctamente
 configurados a la biblioteca SDL.
 */
 
-int compararInt(const void*a,const void*b);
+int main(int argc, char *argv[]){
+    /*
+    //Codigo prueba del bsearch
+    //Invito a probarlo
+    Vector v;
+    Vector_create(&v,10);
+    int i;
 
-int main(int argc, char *argv[])
-{
+    for(i=0;i<15;i++){
+        Vector_insertInOrder(&v,&i,sizeof(int),compararIntBothCast);
+    }
+
+
+    for(i=0;i<15;i++){
+        printf("%d - ", *(int*)(((tNodo*)v.vec[i].dato)));
+    }
+
+    int a = 6;
+    tNodo* nodo = Vector_bsearch(&v, &a, compararIntOneCast);
+
+    if (nodo) {
+        *(int*)(nodo->dato) = 90;  // Cambia el valor encontrado con bsearch
+    }
+    printf("\n\n");
+
+    for(i=0;i<15;i++){
+        printf("%d - ", *(int*)(((tNodo*)v.vec[i].dato)));
+    }
+
+    */
     Game* game=Game_create();
     Game_init(game,"La IEEE 754 llego al barrio",
                                                 SDL_WINDOWPOS_UNDEFINED,
@@ -39,16 +65,6 @@ int main(int argc, char *argv[])
     }
 
     Game_clean(game);
-
     return 0;
 }
 
-int compararInt(const void*a,const void*b){
-    tNodo* dato1 = ((tNodo*)a);
-    tNodo* dato2 = ((tNodo*)b);
-
-    int a1 = *(int*)(dato1->dato);
-    int b1 = *(int*)(dato2->dato);
-
-    return (a1-b1);
-}
