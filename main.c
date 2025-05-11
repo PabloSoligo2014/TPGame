@@ -21,34 +21,6 @@ configurados a la biblioteca SDL.
 
 int main(int argc, char *argv[]){
 
-    //Codigo prueba del bsearch
-    //Invito a probarlo
-    Vector v;
-    Vector_create(&v,10);
-    int i;
-
-    for(i=0;i<15;i++){
-        Vector_insertInOrder(&v,&i,sizeof(int),compararIntBothCast);
-    }
-
-
-    for(i=0;i<15;i++){
-        printf("%d - ", *(int*)(((tNodo*)v.vec[i].dato)));
-    }
-
-    int a = 6;
-    tNodo* nodo = Vector_bsearch(&v, &a, compararIntOneCast);
-
-    if (nodo) {
-        *(int*)(nodo->dato) = 90;  // Cambia el valor encontrado con bsearch
-    }
-    printf("\n\n");
-
-    for(i=0;i<15;i++){
-        printf("%d - ", *(int*)(((tNodo*)v.vec[i].dato)));
-    }
-
-    /*
     Game* game=Game_create();
     Game_init(game,"La IEEE 754 llego al barrio",
                                                 SDL_WINDOWPOS_UNDEFINED,
@@ -65,6 +37,6 @@ int main(int argc, char *argv[]){
     }
 
     Game_clean(game);
-    */return 0;
+    return 0;
 }
 
