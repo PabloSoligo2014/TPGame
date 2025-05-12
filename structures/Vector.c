@@ -35,7 +35,7 @@ int Vector_insertInOrder(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
 
     // Desplazamos los elementos mayores
     int i = v->ce - 1;
-    while (i >= 0 && cmp(&nodo, &v->vec[i]) < 0) {
+    while (i >= 0 && cmp(nodo.dato, v->vec[i].dato) < 0) {
         v->vec[i + 1] = v->vec[i];
         i--;
     }
@@ -54,7 +54,7 @@ tNodo* Vector_bsearch(Vector* v, void* valor, Cmp cmp) {
 
     while (ini <= fin) {
         int medio = ini + (fin - ini) / 2;
-        int comp = cmp(valor, &base[medio]);
+        int comp = cmp(valor, base[medio].dato);
         if (comp == 0) {
             return &base[medio];  // Se encontró el valor
         } else if (comp > 0) {
@@ -94,18 +94,9 @@ int _resize(Vector* v,size_t nuevoTamanio){
   return 1;
 }
 
-// Función de comparación de un valor y un Nodo
-int compararIntOneCast(const void* a, const void* b) {
-    int valorBuscado = *(int*)a;
-    tNodo* nodo = (tNodo*)b;
-    int valorNodo = *(int*)(nodo->dato);
-    return valorBuscado - valorNodo;
-}
 //Función de comparación entre dos Nodos
-int compararIntBothCast(const void* a, const void* b) {
-    tNodo* nodoA = (tNodo*)a;
-    int valorBuscado = *(int*)(nodoA->dato);
-    tNodo* nodoB = (tNodo*)b;
-    int valorNodo = *(int*)(nodoB->dato);
-    return valorBuscado - valorNodo;
+int compararInt(const void* a, const void* b) {
+    int valorA = *(int*)a;
+    int valorB = *(int*)b;
+    return valorA - valorB;
 }

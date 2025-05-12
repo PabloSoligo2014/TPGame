@@ -25,6 +25,5 @@ int _resize(Vector* v,size_t nuevoTamanio);
 int Vector_insertInOrder(Vector* v,void*elemento,size_t tamDato,Cmp cmp);
 int Vector_getByPos(Vector* v, int pos, void * valor, size_t tamValor);
 tNodo* Vector_bsearch(Vector *v, void * valor, Cmp cmp);
-int compararIntOneCast(const void*a,const void*b);
-int compararIntBothCast(const void* a, const void* b);
+int compararInt(const void* a, const void* b);
 #endif // VECTOR_H_INCLUDED
