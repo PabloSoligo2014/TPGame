@@ -17,11 +17,12 @@ práctico se pretende que los alumnos usen y verifiquen la necesidad de tener es
 
 ## Bibliografía recomendada
 Mitchell, S. (2013). SDL Game Development. Packt Publishing Ltd.
+Douglass, B. P. (2010). Design patterns for embedded systems in C: an embedded software engineering toolkit. Elsevier.
 
 ### Alumnos Comisión 04-3600. Miercoles TT. Año 2025
 LAZARTE, ULISES LAUTARO (ZLises)</BR>
 MENDEZ, SAMUEL OMAR (5ammys)</BR>
-BORJA, TOMAS HERNAN</BR>
+BORJA, TOMAS HERNAN (TomiiHB)</BR>
 AYALA BUSTOS, GUSTAVO GABRIEL (TejonCosmico)</BR>
 IBARRA, GONZALO IVAN</BR>
 ROBELIN, FEDERICO NICOLAS (Fenicro-01)</BR>
