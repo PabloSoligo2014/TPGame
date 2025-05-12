@@ -33,30 +33,36 @@ int Vector_insertInOrder(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
         }
     }
 
+    // Puntero al último nodo válido
+    tNodo* actual = v->vec + v->ce - 1;
+
+    // Puntero a la posición donde vamos a insertar
+    tNodo* destino = v->vec + v->ce;
+
     // Desplazamos los elementos mayores
-    int i = v->ce - 1;
-    while (i >= 0 && cmp(nodo.dato, v->vec[i].dato) < 0) {
-        v->vec[i + 1] = v->vec[i];
-        i--;
+    while (actual >= v->vec && cmp(nodo.dato, actual->dato) < 0) {
+        *destino = *actual;
+        destino--;
+        actual--;
     }
 
     // Insertamos el nuevo nodo
-    v->vec[i + 1] = nodo;
+    *destino = nodo;
     v->ce++;
 
     return 1;
 }
 // Función de búsqueda binaria
 tNodo* Vector_bsearch(Vector* v, void* valor, Cmp cmp) {
-    tNodo* base = v->vec;
-    int ini = 0;
-    int fin = v->ce - 1;
+    tNodo* ini = v->vec;
+    tNodo* fin = v->vec + v->ce - 1;
 
     while (ini <= fin) {
-        int medio = ini + (fin - ini) / 2;
-        int comp = cmp(valor, base[medio].dato);
+        tNodo* medio = ini + (fin - ini) / 2;
+        int comp = cmp(valor, medio->dato);
+
         if (comp == 0) {
-            return &base[medio];  // Se encontró el valor
+            return medio;  // Se encontró el valor
         } else if (comp > 0) {
             ini = medio + 1;
         } else {
@@ -65,6 +71,7 @@ tNodo* Vector_bsearch(Vector* v, void* valor, Cmp cmp) {
     }
     return NULL;  // No se encontró el valor
 }
+
 int Vector_getByPos(Vector* v, int pos, void * valor, size_t tamValor){
 
     tNodo * ini = ((v->vec) + pos);
