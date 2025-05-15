@@ -1,17 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#ifdef __MINGW32__
-    #define SDL_MAIN_HANDLED
-    #include <SDL2/SDL_main.h>
-#endif
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_Image.h>
 
-#include "test_utils.h"
-#include "structures/Vector.h"
-#include "minunit.h"
+#include "../test_utils.h"
+#include "../../structures/Vector.h"
+#include "../minunit.h"
 
 #define TEMPORAL_COMPILE //Quitar luego de arreglar los prototipos
 
