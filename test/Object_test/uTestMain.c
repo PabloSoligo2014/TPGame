@@ -17,6 +17,7 @@ MU_TEST(test_object_create){
     sprintf(errorMsg, "id %p must be equal to address %p\n",  po->getId(po), &o);
 
     mu_assert((po->getId(po))==&o, errorMsg);
+    po->destroy(po);
 }
 
 MU_TEST(test_object_string){
@@ -33,10 +34,25 @@ MU_TEST(test_object_string){
     sprintf(errorMsg, "to string must be %s and it was %s\n", buffer, buffer);
 
     mu_assert(strcmp(expecterResult, buffer)==0, errorMsg);
+    po->destroy(po);
 }
 
 
+MU_TEST(test_object_type_descriptor){
+    char errorMsg[MAX_ERROR_MSG];
+    char expecterResult[] = OBJECT_TYPE_DESCRIPTOR;
+    char buffer[128];
+    Object o;
+    Object* po;
 
+    po = Object_create(&o);
+    po->getType(po, buffer);
+    sprintf(errorMsg, "type descriptor must be %s and it was %s\n", expecterResult, buffer);
+
+    mu_assert(strcmp(expecterResult, buffer)==0, errorMsg);
+    po->destroy(po);
+
+}
 
 
 
@@ -44,6 +60,7 @@ MU_TEST_SUITE(test_suite) {
 
     MU_RUN_TEST(test_object_create);
     MU_RUN_TEST(test_object_string);
+    MU_RUN_TEST(test_object_type_descriptor);
 
 }
 

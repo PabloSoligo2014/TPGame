@@ -466,7 +466,7 @@
 
 1746715850 source:d:\git\tpgame\test\test_utils.c
 
-1747316424 source:d:\git\tpgame\test\object_test\utestmain.c
+1747329351 source:d:\git\tpgame\test\object_test\utestmain.c
 	<stdio.h>
 	<stdlib.h>
 	<unistd.h>
@@ -474,10 +474,11 @@
 	"../minunit.h"
 	"../../structures/Object.h"
 
-1747316247 source:d:\git\tpgame\structures\object.c
+1747329323 source:d:\git\tpgame\structures\object.c
 	<stdlib.h>
 	<stdio.h>
+	<string.h>
 	"Object.h"
 
-1747312214 d:\git\tpgame\structures\object.h
+1747329235 d:\git\tpgame\structures\object.h
 
