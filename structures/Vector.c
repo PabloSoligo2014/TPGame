@@ -18,20 +18,20 @@ void Vector_destroy(Vector*v){
 
 // Función para insertar en orden
 int Vector_insertInOrder(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
+
+    // Verificar si hay espacio para el nuevo elemento
+    if (v->ce == v->tam) {
+        if (_resize(v, v->tam + 2) == -1) {
+            return -1;
+        }
+    }
+
     tNodo nodo;
     nodo.dato = malloc(tamDato);  // Reservamos memoria para el nuevo dato
     if (!nodo.dato) return -1;
 
     memcpy(nodo.dato, elemento, tamDato);
     nodo.tam = tamDato;
-
-    // Verificar si hay espacio para el nuevo elemento
-    if (v->ce == v->tam) {
-        if (_resize(v, v->tam + 2) == -1) {
-            free(nodo.dato);  // Liberamos la memoria si falla el redimensionado
-            return -1;
-        }
-    }
 
     // Puntero al último nodo válido
     tNodo* actual = v->vec + v->ce - 1;
