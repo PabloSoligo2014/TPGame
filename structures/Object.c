@@ -2,31 +2,66 @@
 #include <stdio.h>
 #include <string.h>
 #include "Object.h"
+#include "../test/test_utils.h"
+#define OBJECT_TYPE_DESCRIPTOR "Object"
+
+int cmp_method(const void* a, const void* b){
+    return strcmp(((TMethod*)a)->methodName, ((TMethod*)b)->methodName);
+}
 
 
 
 void* Object_create(Object* self){
-    static const struct SObjectVTable ovtable = {
-        .getId = Object_getId,
-        .toString = Object_toString,
-        .getType = Object_getType,
-        .destroy = Object_destroy
-    };
     static const char dtype[DTYPE_LENGTH] = OBJECT_TYPE_DESCRIPTOR;
     self->dtype = dtype;
-
-    self->ovtable = &ovtable;
     self->id = self;
 
-    //To improve readability for the user of the class (aka o->method(&o)), this is optional.
-    self->toString  = toString;
-    self->getId     = getId;
-    self->getType   = getType;
-    self->destroy   = destroy;
+    //Direcciones de metodos, asignacion de metodos para simplificar uso
+    TMethod methods[] = {
+        {"getId", 0, "Object_getId", Object_getId},
+        {"toString", 1, "Object_toString", Object_toString},
+        {"getType", 1, "Object_getType",Object_getType},
+        {"destroy", 0, "Object_destroy",Object_destroy}
+    };
+
+    Vector_create(&self->vtable, 10);
+    self->pvtable = &self->vtable;
+
+    _method_assign(self->pvtable, methods, sizeof(methods)/sizeof(TMethod));
+
+
     return self;
 }
 
 
+void* _getMethod(Object* self, const char* methodName){
+    TMethod method;
+    TMethod* result;
+    strcpy(method.methodName, methodName);
+    result = Vector_bsearch(&self->vtable, &method, cmp_method);
+    if (result!=NULL)
+        return result->method;
+    else
+        return result;
+}
+
+/*
+void* Invoke(Object* obj, const char* method, ...){
+    void* result = NULL;
+    va_list args;
+    va_start(args, method);
+    //
+    result = Vector_bsearch(&obj->vtable, method, cmp_method);
+    if(!result){
+        //Assert change to error handling
+        fprintf(stderr, "Method %s not found\n", method);
+        va_end(args);
+        return NULL;
+    }
+    va_end(args);
+    return NULL;
+}
+*/
 
 void* Object_getId(Object* self){
     return self->id;
@@ -49,20 +84,47 @@ void Object_destroy(Object* self){
     return;
 }
 
-void* getId(Object* obj){
-    return obj->ovtable->getId(obj);
+
+void _method_assign(Vector* v, TMethod* methods, unsigned methodCount){
+    //Vector_map(&self->vtable, show_method);
+
+    for(int i = 0; i < methodCount; i++){
+        //printf("Insertando %s\n", methods[i].tag);
+        Vector_insertInOrder(v, &methods[i], sizeof(TMethod), cmp_method);
+
+    }
+    //puts("----------");
+    //Vector_map(&self->vtable, show_method);
 }
 
-char* toString(Object* obj, char* buffer){
-    return obj->ovtable->toString(obj, buffer);
+//Metodos virtuales
+
+void* getId(Object* self){
+    void* m = _getMethod(self, "getId");
+    if(m == NULL){
+        return NULL;
+    }
+    return ((void*(*)(Object*))m)(self);
+}
+char* toString(Object* self, char* buffer){
+    void* m = _getMethod(self, "toString");
+    if(m == NULL){
+        return NULL;
+    }
+    return ((char*(*)(Object*, char*))m)(self, buffer);
+}
+char* getType(Object* self, char* buffer){
+    void* m = _getMethod(self, "getType");
+    if(m == NULL){
+        return NULL;
+    }
+    return ((char*(*)(Object*, char*))m)(self, buffer);
 }
 
-char* getType(Object* obj, char* buffer){
-    return obj->ovtable->getType(obj, buffer);
+void destroy(Object* self){
+    void* m = _getMethod(self, "destroy");
+    if(m == NULL){
+        return;
+    }
+    ((void(*)(Object*))m)(self);
 }
-
-void destroy(Object* obj){
-    obj->ovtable->destroy(obj);
-}
-
-

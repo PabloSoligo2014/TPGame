@@ -423,10 +423,10 @@
 	<stdio.h>
 	<math.h>
 
-1747310379 source:d:\git\tpgame\structures\vector.c
+1747935615 source:d:\git\tpgame\structures\vector.c
 	"Vector.h"
 
-1747310379 d:\git\tpgame\structures\vector.h
+1747933387 d:\git\tpgame\structures\vector.h
 	<stdlib.h>
 	<string.h>
 	<stdio.h>
@@ -449,7 +449,7 @@
 	"../../structures/Vector.h"
 	"../minunit.h"
 
-1746715794 d:\git\tpgame\test\test_utils.h
+1747933557 d:\git\tpgame\test\test_utils.h
 
 1683115966 d:\git\tpgame\test\minunit.h
 	<Windows.h>
@@ -464,21 +464,32 @@
 	<stdio.h>
 	<math.h>
 
-1746715850 source:d:\git\tpgame\test\test_utils.c
+1747933900 source:d:\git\tpgame\test\test_utils.c
+	"../structures/Object.h"
 
-1747329351 source:d:\git\tpgame\test\object_test\utestmain.c
+1747939409 source:d:\git\tpgame\test\object_test\utestmain.c
 	<stdio.h>
 	<stdlib.h>
 	<unistd.h>
 	"../test_utils.h"
 	"../minunit.h"
 	"../../structures/Object.h"
+	"../../structures/GameObject.h"
 
-1747329323 source:d:\git\tpgame\structures\object.c
+1747939105 source:d:\git\tpgame\structures\object.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"Object.h"
+	"../test/test_utils.h"
 
-1747329235 d:\git\tpgame\structures\object.h
+1747938236 d:\git\tpgame\structures\object.h
+	"Vector.h"
+
+1747938317 source:d:\git\tpgame\structures\gameobject.c
+	"GameObject.h"
+
+1747937969 d:\git\tpgame\structures\gameobject.h
+	"Object.h"
+	"Vector.h"
 
