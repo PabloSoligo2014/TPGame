@@ -86,15 +86,10 @@ void Object_destroy(Object* self){
 
 
 void _method_assign(Vector* v, TMethod* methods, unsigned methodCount){
-    //Vector_map(&self->vtable, show_method);
 
     for(int i = 0; i < methodCount; i++){
-        //printf("Insertando %s\n", methods[i].tag);
         Vector_insertInOrder(v, &methods[i], sizeof(TMethod), cmp_method);
-
     }
-    //puts("----------");
-    //Vector_map(&self->vtable, show_method);
 }
 
 //Metodos virtuales

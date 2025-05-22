@@ -15,7 +15,8 @@ void* GameObject_create(GameObject* self){
     TMethod methods[] = {
         {"toString", 1, "GameObject_toString", GameObject_toString},//overriding!!
         {"setPosition", 2, "GameObject_setPosition", GameObject_setPosition},
-        {"getPosition", 2, "GameObject_getPosition", GameObject_getPosition}
+        {"getPosition", 2, "GameObject_getPosition", GameObject_getPosition},
+        {"draw", 0, "GameObject_draw", GameObject_draw}
     };
 
     _method_assign(self->pvtable, methods, sizeof(methods)/sizeof(TMethod));
@@ -59,4 +60,10 @@ void getPosition(GameObject* self, unsigned int* x, unsigned int* y){
         return;
     }
     ((void(*)(GameObject*, unsigned int*, unsigned int*))m)(self, x, y);
+}
+
+
+int GameObject_draw(GameObject* self){
+    puts("Aca se dibuja...");
+    return 1;
 }

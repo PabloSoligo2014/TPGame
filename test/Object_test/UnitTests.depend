@@ -476,7 +476,7 @@
 	"../../structures/Object.h"
 	"../../structures/GameObject.h"
 
-1747939105 source:d:\git\tpgame\structures\object.c
+1747948999 source:d:\git\tpgame\structures\object.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -486,10 +486,10 @@
 1747938236 d:\git\tpgame\structures\object.h
 	"Vector.h"
 
-1747938317 source:d:\git\tpgame\structures\gameobject.c
+1747949149 source:d:\git\tpgame\structures\gameobject.c
 	"GameObject.h"
 
-1747937969 d:\git\tpgame\structures\gameobject.h
+1747949046 d:\git\tpgame\structures\gameobject.h
 	"Object.h"
 	"Vector.h"
 

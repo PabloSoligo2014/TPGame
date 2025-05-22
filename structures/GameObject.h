@@ -17,10 +17,12 @@ void* GameObject_create(GameObject* self);
 int GameObject_setPosition(GameObject* self, unsigned int x, unsigned int y);
 void GameObject_getPosition(GameObject* self, unsigned int* x, unsigned int* y);
 char* GameObject_toString(Object* self, char* buffer);
+int GameObject_draw(GameObject* self);
 
 
 int setPosition(GameObject* self, unsigned int x, unsigned int y);
 void getPosition(GameObject* self, unsigned int* x, unsigned int* y);
+int draw(GameObject* self);
 
 
 #endif
