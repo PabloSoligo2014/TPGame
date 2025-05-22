@@ -16,7 +16,7 @@ void Vector_destroy(Vector*v){
     free(v->vec);
 }
 
-// Función para insertar en orden
+// FunciÃ³n para insertar en orden
 int Vector_insertInOrder(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
 
     // Verificar si hay espacio para el nuevo elemento
@@ -33,10 +33,10 @@ int Vector_insertInOrder(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
     memcpy(nodo.dato, elemento, tamDato);
     nodo.tam = tamDato;
 
-    // Puntero al último nodo válido
+    // Puntero al Ãºltimo nodo vÃ¡lido
     tNodo* actual = v->vec + v->ce - 1;
 
-    // Puntero a la posición donde vamos a insertar
+    // Puntero a la posiciÃ³n donde vamos a insertar
     tNodo* destino = v->vec + v->ce;
 
     // Desplazamos los elementos mayores
@@ -53,24 +53,27 @@ int Vector_insertInOrder(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
     return 1;
 }
 
-// Función de búsqueda binaria
-void* Vector_bsearch(Vector* v, void* valor, Cmp cmp) {
+// FunciÃ³n de bÃºsqueda binaria
+void* Vector_bsearch(Vector* v, void* valor, Cmp cmp)
+{
     tNodo* ini = v->vec;
     tNodo* fin = v->vec + v->ce - 1;
 
-    while (ini <= fin) {
+    while (ini <= fin){
         tNodo* medio = ini + (fin - ini) / 2;
         int comp = cmp(valor, medio->dato);
 
-        if (comp == 0) {
-            return medio->dato;  // Se encontró el valor
-        } else if (comp > 0) {
-            ini = medio + 1;
-        } else {
-            fin = medio - 1;
+        if (comp == 0){
+            return medio->dato;  // Se encontrÃ³ el valor
+        }
+        else if (comp > 0){
+            ini = medio + 1; 
+        }
+        else{
+            fin = medio - 1; 
         }
     }
-    return NULL;  // No se encontró el valor
+    return NULL;  // No se encontrÃ³ el valor
 }
 
 int Vector_getByPos(Vector* v, int pos, void * valor, size_t tamValor){
@@ -102,7 +105,7 @@ int _resize(Vector* v,size_t nuevoTamanio){
   return 1;
 }
 
-//Función de comparación entre dos Nodos
+//FunciÃ³n de comparaciÃ³n entre dos Nodos
 int compararInt(const void* a, const void* b) {
     int valorA = *(int*)a;
     int valorB = *(int*)b;
