@@ -52,8 +52,9 @@ int Vector_insertInOrder(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
 
     return 1;
 }
+
 // Función de búsqueda binaria
-tNodo* Vector_bsearch(Vector* v, void* valor, Cmp cmp) {
+void* Vector_bsearch(Vector* v, void* valor, Cmp cmp) {
     tNodo* ini = v->vec;
     tNodo* fin = v->vec + v->ce - 1;
 
@@ -62,7 +63,7 @@ tNodo* Vector_bsearch(Vector* v, void* valor, Cmp cmp) {
         int comp = cmp(valor, medio->dato);
 
         if (comp == 0) {
-            return medio;  // Se encontró el valor
+            return medio->dato;  // Se encontró el valor
         } else if (comp > 0) {
             ini = medio + 1;
         } else {
