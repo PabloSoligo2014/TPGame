@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-
 #include "../test_utils.h"
 #include "../../structures/Vector.h"
 #include "../minunit.h"
@@ -52,9 +50,9 @@ MU_TEST(test_vector_insert_int){
         //Asi que de entrada hay que arreglar esto,
 
         //TODO: arreglar prototipo quitar macro
-        #ifndef TEMPORAL_COMPILE
+
         Vector_insertInOrder(&vector, pvtest, sizeof(*pvtest), cmp_int);
-        #endif // TEMPORAL_COMPILE
+
 
         pvtest++;
         //Aca hay mas controles que hacer en test previos...
@@ -75,9 +73,9 @@ MU_TEST(test_vector_insert_int){
         //4.Tamanio, eso les va parecer no necesario porque esta en el nodo, si, tiene un poco
         //de razon pero hay casos donde el elemento tiene tamaño variable, ya lo veremos.
 
-        #ifndef TEMPORAL_COMPILE
+
         Vector_getByPos(&vector, i, &valor, sizeof(valor));
-        #endif // TEMPORAL_COMPILE
+
 
         //Lo que obtuve del Vector tiene que coincidir perfectamente con el vector de test ordenado
 

@@ -14,6 +14,51 @@ int Vector_create(Vector*v, unsigned tamVector){
 }
 void Vector_destroy(Vector*v){
     free(v->vec);
+    v->ce = 0;
+    v->tam = 0;
+}
+//Funcion para insertar en orden y no repetir
+int Vector_insertInOrderNoRepeat(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
+
+    // Verificar si hay espacio para el nuevo elemento
+    if (v->ce == v->tam) {
+        if (_resize(v, v->tam + 2) == -1) {
+            return -1;
+        }
+    }
+
+    tNodo nodo;
+    nodo.dato = malloc(tamDato);  // Reservamos memoria para el nuevo dato
+    if (!nodo.dato) return -1;
+
+    memcpy(nodo.dato, elemento, tamDato);
+    nodo.tam = tamDato;
+
+    void* search = Vector_bsearch(v,nodo.dato,cmp); //busca el elemento por la condicion
+
+    if(search){
+        memcpy(search,nodo.dato,tamDato); //si lo encuentra lo reemplaza y retorna 2
+        return 2;
+    }
+
+    // Puntero al último nodo válido
+    tNodo* actual = v->vec + v->ce - 1;
+
+    // Puntero a la posición donde vamos a insertar
+    tNodo* destino = v->vec + v->ce;
+
+    // Desplazamos los elementos mayores
+    while (actual >= v->vec && cmp(nodo.dato, actual->dato) < 0) {
+        *destino = *actual;
+        destino--;
+        actual--;
+    }
+
+    // Insertamos el nuevo nodo
+    *destino = nodo;
+    v->ce++;
+
+    return 1;
 }
 
 // Función para insertar en orden
