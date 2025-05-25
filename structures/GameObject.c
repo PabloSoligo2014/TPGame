@@ -64,6 +64,15 @@ void getPosition(GameObject* self, unsigned int* x, unsigned int* y){
 
 
 int GameObject_draw(GameObject* self){
-    puts("Aca se dibuja...");
+    puts("GameObject_draw");
     return 1;
+}
+
+
+int draw(GameObject* self){
+    void* m = _getMethod((Object*)self, "draw");
+    if(m == NULL){
+        return 0;
+    }
+    return ((int(*)(GameObject*))m)(self);
 }

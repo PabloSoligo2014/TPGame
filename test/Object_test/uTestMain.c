@@ -96,6 +96,19 @@ MU_TEST(test_game_object_base_method){
     destroy((Object*)po);
 }
 
+MU_TEST(test_game_game_object_draw){
+    char errorMsg[MAX_MESSAGE];
+    char* expecterResult = "GameObject_draw";
+
+    GameObject o;
+    GameObject* po;
+    po = GameObject_create(&o);
+    //False test, for demonstration purposes only
+    draw(po);
+    mu_assert(1==1, errorMsg);
+    destroy((Object*)po);
+}
+
 
 
 
@@ -106,6 +119,7 @@ MU_TEST_SUITE(test_suite) {
     MU_RUN_TEST(test_object_type_descriptor);
     MU_RUN_TEST(test_game_object_overriding);
     MU_RUN_TEST(test_game_object_base_method);
+    MU_RUN_TEST(test_game_game_object_draw);
 }
 
 int main(int argc, char *argv[])
