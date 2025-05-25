@@ -3,6 +3,12 @@
 #include <stdio.h> //there is a put call...will disappear, but now it is
 #include "Game.h"
 
+SDL_Texture* m_pTexture; // the new SDL_Texture variable
+SDL_Rect m_sourceRectangle; // the first rectangle
+SDL_Rect m_destinationRectangle; // another rectangle
+
+int m_currentFrame;
+
 //This function will disappear, just for test
 void drawFilledCircle(SDL_Renderer* renderer, int cx, int cy, int radius) {
     for (int y = -radius; y <= radius; y++) {
@@ -23,7 +29,7 @@ Game* Game_create(){
     return game;
 }
 
-void Game_init(Game* game, const char* title, int x, int y, int w, int h, int flags, int delay){
+void Game_init(Vector* v, Game* game, const char* title, int x, int y, int w, int h, int flags, int delay){
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         SDL_Log("Error al inicializar SDL: %s\n", SDL_GetError());
         return;
@@ -44,6 +50,11 @@ void Game_init(Game* game, const char* title, int x, int y, int w, int h, int fl
     SDL_SetWindowTitle(game->window, title);
     game->delay = delay;
     game->isRunning = true;
+
+    TextureManager_load(v, "assets/aircrafts.png", 1, game->renderer);
+    TextureManager_load(v, "assets/1945.png", 2, game->renderer);
+    TextureManager_load(v, "assets/animate-alpha.png", 3, game->renderer);
+    TextureManager_load(v, "assets/animate-alpha.png", 4, game->renderer);
 }
 
 
@@ -51,32 +62,35 @@ void Game_update(Game *game){
     /*
     Generar la logica del juego
     */
+    m_currentFrame = (int)(((SDL_GetTicks() / 100) % 6));
 }
 
-void Game_render(Game* game){
-    SDL_SetRenderDrawColor(game->renderer, 0, 0, 0, 255);
-    SDL_RenderClear(game->renderer);
+void Game_render(Vector* v, Game* game){
+    //Imagenes
 
-    SDL_Rect rect1 = {150, 150, 30, 30};
-    SDL_SetRenderDrawColor(game->renderer, 255, 255, 0, 255);
-    SDL_RenderFillRect(game->renderer, &rect1);
+    SDL_RenderClear(game->renderer); // clear the renderer to the draw color
 
-    SDL_Rect rect2 = {100, 100, 30, 30};
-    SDL_SetRenderDrawColor(game->renderer, 255, 0, 0, 255);
-    SDL_RenderFillRect(game->renderer, &rect2);
+    SDL_RenderCopyEx(game->renderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 0, 0, SDL_FLIP_NONE); // pass in the horizontal flip
 
-    SDL_SetRenderDrawColor(game->renderer, 0, 0, 255, 255);
-    drawFilledCircle(game->renderer, 50, 50, 50);
+    TextureManager_draw(v, 1, 0, 0, 128, 82, game->renderer, SDL_FLIP_NONE);
+    TextureManager_drawFrame(v, 1, 0, 100, 128, 82, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
 
-    SDL_RenderPresent(game->renderer);
+    TextureManager_draw(v, 2, 150, 0, 128, 82, game->renderer, SDL_FLIP_NONE);
+    TextureManager_drawFrame(v, 2, 150, 100, 128, 82, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
 
-    SDL_Delay(game->delay);
+    TextureManager_draw(v, 3, 300, 0, 128, 82, game->renderer, SDL_FLIP_NONE);
+    TextureManager_drawFrame(v, 3, 300, 100, 128, 82, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
+
+    TextureManager_draw(v, 4, 450, 0, 128, 82, game->renderer, SDL_FLIP_NONE);
+    TextureManager_drawFrame(v, 4, 450, 100, 128, 82, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
+
+    SDL_RenderPresent(game->renderer); // draw to the screen
 }
 
 void Game_handleEvents(Game* game){
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-        if (event.type == SDL_QUIT) {
+        if (event.type == SDL_QUIT || event.key.keysym.sym == SDLK_ESCAPE) {
             game->isRunning = false;
             puts("ENTER para salir");
         }

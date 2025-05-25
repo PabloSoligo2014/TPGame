@@ -12,11 +12,13 @@ int Vector_create(Vector*v, unsigned tamVector){
 
    return 1;
 }
+
 void Vector_destroy(Vector*v){
     free(v->vec);
     v->ce = 0;
     v->tam = 0;
 }
+
 //Funcion para insertar en orden y no repetir
 int Vector_insertInOrderNoRepeat(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
 
@@ -108,10 +110,14 @@ void* Vector_bsearch(Vector* v, void* valor, Cmp cmp) {
 
         if (comp == 0) {   // Se encontró el valor
             return medio->dato;  // Se retorna la direccion
-        } else if (comp > 0) {
-            ini = medio + 1;
-        } else {
-            fin = medio - 1;
+        }
+        else
+        {
+            if (comp > 0) {
+                ini = medio + 1;
+            } else {
+                fin = medio - 1;
+            }
         }
     }
     return NULL;  // No se encontró el valor
@@ -150,5 +156,5 @@ int _resize(Vector* v,size_t nuevoTamanio){
 int compararInt(const void* a, const void* b) {
     int valorA = *(int*)a;
     int valorB = *(int*)b;
-    return valorA - valorB;
+    return (valorA - valorB);
 }

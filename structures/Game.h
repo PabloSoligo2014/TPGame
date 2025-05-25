@@ -3,6 +3,8 @@
 
 #include<stdbool.h>
 #include "Entities.h"
+#include "Vector.h"
+#include "TextureManager.h"
 #include <SDL2/SDL.h>
 
 typedef struct{
@@ -13,10 +15,10 @@ typedef struct{
 } Game;
 
 Game* Game_create();
-void Game_init(Game* game, const char* title, int x, int y, int w, int h, int flags, int delay);
+void Game_init(Vector* v, Game* game, const char* title, int x, int y, int w, int h, int flags, int delay);
 void Game_handleEvents(Game* game);
 void Game_update(Game* game);
-void Game_render(Game* game);
+void Game_render(Vector* v, Game* game);
 void Game_clean(Game* game);
 bool Game_isRunning(Game* game);
 

@@ -36,7 +36,9 @@
 		<Linker>
 			<Add option="-lSDL2" />
 			<Add option="-lSDL2main" />
+			<Add option="-lSDL2_image" />
 			<Add directory="./SDL2/lib" />
+			<Add directory="SDL2_Image/lib" />
 		</Linker>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
@@ -46,6 +48,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="structures/Game.h" />
+		<Unit filename="structures/TextureManager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="structures/TextureManager.h" />
 		<Unit filename="structures/Vector.c">
 			<Option compilerVar="CC" />
 		</Unit>
