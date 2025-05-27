@@ -151,7 +151,15 @@ int _resize(Vector* v,size_t nuevoTamanio){
   v->tam = nuevoTamanio;
   return 1;
 }
+void Vector_map(Vector*v,Accion accion){
+  int i;
+  tNodo*pivot= v->vec;
 
+  for(i=0;i<v->ce;i++){
+    accion(pivot->dato);
+    pivot++;
+  }
+}
 //Función de comparación entre dos Nodos
 int compararInt(const void* a, const void* b) {
     int valorA = *(int*)a;
