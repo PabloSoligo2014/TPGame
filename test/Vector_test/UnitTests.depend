@@ -466,3 +466,36 @@
 
 1746715850 source:d:\git\tpgame\test\test_utils.c
 
+1748544231 source:c:\users\equipo\desktop\prueba\tpgame\structures\vector.c
+	"Vector.h"
+
+1748544231 c:\users\equipo\desktop\prueba\tpgame\structures\vector.h
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1748544231 source:c:\users\equipo\desktop\prueba\tpgame\test\test_utils.c
+
+1748549022 source:c:\users\equipo\desktop\prueba\tpgame\test\vector_test\utestmain.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	"../test_utils.h"
+	"../../structures/Vector.h"
+	"../minunit.h"
+
+1748544231 c:\users\equipo\desktop\prueba\tpgame\test\test_utils.h
+
+1748544231 c:\users\equipo\desktop\prueba\tpgame\test\minunit.h
+	<Windows.h>
+	<unistd.h>
+	<time.h>
+	<sys/time.h>
+	<sys/resource.h>
+	<sys/times.h>
+	<string.h>
+	<mach/mach.h>
+	<mach/mach_time.h>
+	<stdio.h>
+	<math.h>
+
