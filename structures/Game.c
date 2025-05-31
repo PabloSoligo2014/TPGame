@@ -51,10 +51,11 @@ void Game_init(Vector* v, Game* game, const char* title, int x, int y, int w, in
     game->delay = delay;
     game->isRunning = true;
 
-    TextureManager_load(v, "assets/aircrafts.png", 1, game->renderer);
-    TextureManager_load(v, "assets/1945.png", 2, game->renderer);
-    TextureManager_load(v, "assets/animate-alpha.png", 3, game->renderer);
-    TextureManager_load(v, "assets/animate-alpha.png", 4, game->renderer);
+    TextureManager_load(v, "assets/1945.png", "Subamarino", game->renderer, 367, 103, 33, 98);
+    TextureManager_load(v, "assets/1945.png", "Kaboom", game->renderer, 70, 169, 33, 32);
+    TextureManager_load(v, "assets/1945.png", "Nave Acercamiento", game->renderer, 300, 4, 99, 98);
+    TextureManager_load(v, "assets/animate-alpha.png", "Puma", game->renderer, 0, 0, 128, 82);
+    TextureManager_load(v, "assets/aviones.png", "4", game->renderer, 0, 110, 110, 110);
 }
 
 
@@ -62,7 +63,7 @@ void Game_update(Game *game){
     /*
     Generar la logica del juego
     */
-    m_currentFrame = (int)(((SDL_GetTicks() / 100) % 6));
+    m_currentFrame = (int)(((SDL_GetTicks() / 100) % 6)); //El 6 me limita a que las animaciones tengan 6 frames
 }
 
 void Game_render(Vector* v, Game* game){
@@ -72,17 +73,20 @@ void Game_render(Vector* v, Game* game){
 
     SDL_RenderCopyEx(game->renderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 0, 0, SDL_FLIP_NONE); // pass in the horizontal flip
 
-    TextureManager_draw(v, 1, 0, 0, 128, 82, game->renderer, SDL_FLIP_NONE);
-    TextureManager_drawFrame(v, 1, 0, 100, 128, 82, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
+    TextureManager_draw(v, "Subamarino", 0, 0, game->renderer, SDL_FLIP_NONE);
+    TextureManager_drawFrame(v, "Subamarino", 0, 100, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
 
-    TextureManager_draw(v, 2, 150, 0, 128, 82, game->renderer, SDL_FLIP_NONE);
-    TextureManager_drawFrame(v, 2, 150, 100, 128, 82, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
+    TextureManager_draw(v, "Nave Acercamiento", 150, 0, game->renderer, SDL_FLIP_NONE);
+    TextureManager_drawFrame(v, "Nave Acercamiento", 150, 100, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
 
-    TextureManager_draw(v, 3, 300, 0, 128, 82, game->renderer, SDL_FLIP_NONE);
-    TextureManager_drawFrame(v, 3, 300, 100, 128, 82, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
+    TextureManager_draw(v, "Puma", 300, 0, game->renderer, SDL_FLIP_NONE);
+    TextureManager_drawFrame(v, "Puma", 300, 100, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
 
-    TextureManager_draw(v, 4, 450, 0, 128, 82, game->renderer, SDL_FLIP_NONE);
-    TextureManager_drawFrame(v, 4, 450, 100, 128, 82, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
+    TextureManager_draw(v, "4", 450, 0, game->renderer, SDL_FLIP_NONE);
+    TextureManager_drawFrame(v, "4", 450, 100, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
+
+    TextureManager_draw(v, "Kaboom", 600, 0, game->renderer, SDL_FLIP_NONE);
+    TextureManager_drawFrame(v, "Kaboom", 600, 100, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
 
     SDL_RenderPresent(game->renderer); // draw to the screen
 }

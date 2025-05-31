@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1748207959 source:d:\cb\cb_programas\sdl\tpgame\structures\game.c
+1748713185 source:d:\cb\cb_programas\sdl\tpgame\structures\game.c
 	<stdlib.h>
 	<stdio.h>
 	"Game.h"
@@ -13,12 +13,12 @@
 
 1748206347 d:\cb\cb_programas\sdl\tpgame\structures\entities.h
 
-1748206347 d:\cb\cb_programas\sdl\tpgame\structures\vector.h
+1748714754 d:\cb\cb_programas\sdl\tpgame\structures\vector.h
 	<stdlib.h>
 	<string.h>
 	<stdio.h>
 
-1748208881 d:\cb\cb_programas\sdl\tpgame\structures\texturemanager.h
+1748713185 d:\cb\cb_programas\sdl\tpgame\structures\texturemanager.h
 	<string.h>
 	<stdbool.h>
 	<SDL2/SDL.h>
@@ -425,10 +425,10 @@
 	"begin_code.h"
 	"close_code.h"
 
-1748208881 source:d:\cb\cb_programas\sdl\tpgame\structures\texturemanager.c
+1748713185 source:d:\cb\cb_programas\sdl\tpgame\structures\texturemanager.c
 	"TextureManager.h"
 
-1748208375 source:d:\cb\cb_programas\sdl\tpgame\structures\vector.c
+1748714871 source:d:\cb\cb_programas\sdl\tpgame\structures\vector.c
 	"Vector.h"
 
 1748207308 source:d:\cb\cb_programas\sdl\tpgame\main.c

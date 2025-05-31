@@ -99,6 +99,7 @@ int Vector_insertInOrder(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
 
     return 1;
 }
+
 // Función de búsqueda binaria
 void* Vector_bsearch(Vector* v, void* valor, Cmp cmp) {
     tNodo* ini = v->vec;
@@ -151,6 +152,7 @@ int _resize(Vector* v,size_t nuevoTamanio){
   v->tam = nuevoTamanio;
   return 1;
 }
+
 void Vector_map(Vector*v,Accion accion){
   int i;
   tNodo*pivot= v->vec;
@@ -160,6 +162,7 @@ void Vector_map(Vector*v,Accion accion){
     pivot++;
   }
 }
+
 //Función de comparación entre dos Nodos
 int compararInt(const void* a, const void* b) {
     int valorA = *(int*)a;
