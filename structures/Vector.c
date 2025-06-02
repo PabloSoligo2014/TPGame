@@ -22,13 +22,6 @@ void Vector_destroy(Vector*v){
 //Funcion para insertar en orden y no repetir
 int Vector_insertInOrderNoRepeat(Vector* v, void* elemento, size_t tamDato, Cmp cmp) {
 
-    // Verificar si hay espacio para el nuevo elemento
-    if (v->ce == v->tam) {
-        if (_resize(v, v->tam + 2) == -1) {
-            return -1;
-        }
-    }
-
     tNodo nodo;
     nodo.dato = malloc(tamDato);  // Reservamos memoria para el nuevo dato
     if (!nodo.dato) return -1;
@@ -41,6 +34,14 @@ int Vector_insertInOrderNoRepeat(Vector* v, void* elemento, size_t tamDato, Cmp 
     if(search){
         memcpy(search,nodo.dato,tamDato); //si lo encuentra lo reemplaza y retorna 2
         return 2;
+    }
+
+    // Verificar si hay espacio para el nuevo elemento
+    if (v->ce == v->tam) {
+        if (_resize(v, v->tam + 2) == -1) {
+            free(nodo);
+            return -1;
+        }
     }
 
     // Puntero al último nodo válido
@@ -59,6 +60,7 @@ int Vector_insertInOrderNoRepeat(Vector* v, void* elemento, size_t tamDato, Cmp 
     // Insertamos el nuevo nodo
     *destino = nodo;
     v->ce++;
+    free(nodo);
 
     return 1;
 }
@@ -130,7 +132,7 @@ int Vector_getByPos(Vector* v, int pos, void * valor, size_t tamValor){
     void* aux = ini->dato;
     int i;
 
-    if(pos<=v->ce && pos >= 0){
+    if(v->ce!= 0 pos<=v->ce && pos >= 0){
       for(i=0;i<tamValor;i++){
         *(char*)valor = *(char*)aux;
         aux++;
