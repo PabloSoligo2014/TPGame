@@ -132,7 +132,7 @@ int Vector_getByPos(Vector* v, int pos, void * valor, size_t tamValor){
     void* aux = ini->dato;
     int i;
 
-    if(v->ce!= 0 pos<=v->ce && pos >= 0){
+    if(v->ce!= 0 && pos<=v->ce && pos >= 0){
       for(i=0;i<tamValor;i++){
         *(char*)valor = *(char*)aux;
         aux++;
