@@ -39,7 +39,7 @@ int Vector_insertInOrderNoRepeat(Vector* v, void* elemento, size_t tamDato, Cmp 
     // Verificar si hay espacio para el nuevo elemento
     if (v->ce == v->tam) {
         if (_resize(v, v->tam + 2) == -1) {
-            free(nodo);
+            free(nodo.dato);
             return -1;
         }
     }
