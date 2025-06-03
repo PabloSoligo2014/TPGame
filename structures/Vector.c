@@ -60,8 +60,6 @@ int Vector_insertInOrderNoRepeat(Vector* v, void* elemento, size_t tamDato, Cmp 
     // Insertamos el nuevo nodo
     *destino = nodo;
     v->ce++;
-    free(nodo);
-
     return 1;
 }
 
