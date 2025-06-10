@@ -9,25 +9,31 @@
 
 #include "Vector.h"
 
-#define CAPACIDAD 256
+#define CAPACIDAD 50
 
-typedef struct{
-    SDL_Texture* m_textureMap;
-    int x;
-    int y;
-    int ancho;
-    int alto;
-    char id[CAPACIDAD];
+typedef struct{                 // 74 bytes
+    SDL_Texture* m_textureMap;  // 8 bytes
+    int x;                      // 4 bytes
+    int y;                      // 4 bytes
+    int ancho;                  // 4 bytes
+    int alto;                   // 4 bytes
+    char id[CAPACIDAD];         // 50 bytes
 }t_map;
 
-bool TextureManager_load(Vector* v, const char* fileName, const char* id, SDL_Renderer* pRenderer, int x, int y, int ancho, int alto); // Funcion para cargar una imagen o el primer frame de una en caso de ser animacion
+Vector VecTex;
 
-void TextureManager_draw(Vector* v, const char* id, int xpos, int ypos, SDL_Renderer* pRenderer, SDL_RendererFlip flip); //Funcion para mostar una imagen estatica
+int Texture_Create();
 
-void TextureManager_drawFrame(Vector* v, const char* id , int xpos, int ypos, int currentRow, int currentFrame, SDL_Renderer* pRenderer, SDL_RendererFlip flip); // Funcion para animar una imagen
+void Texture_delete();
+
+bool TextureManager_load(const char* fileName, const char* id, SDL_Renderer* pRenderer, int x, int y, int ancho, int alto); // Funcion para cargar una imagen o el primer frame de una en caso de ser animacion
+
+void TextureManager_draw(const char* id, int xpos, int ypos, SDL_Renderer* pRenderer, SDL_RendererFlip flip); //Funcion para mostar una imagen estatica
+
+void TextureManager_drawFrame(const char* id , int xpos, int ypos, int currentRow, int currentFrame, SDL_Renderer* pRenderer, SDL_RendererFlip flip); // Funcion para animar una imagen
 
 int compararIdTex(const void* a,const void* b); // Funcion de comparacion entre un INT y una ID de t_map
 
-int compararTex (const void* a, const void* b); // Funcion de comparacion entre dos ID de t_map
+int compararTex(const void* a, const void* b); // Funcion de comparacion entre dos ID de t_map
 
 #endif // TEXTUREMANAGER_H_INCLUDED

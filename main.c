@@ -22,12 +22,7 @@ configurados a la biblioteca SDL.
 int main(int argc, char *argv[]){
     Game* game=Game_create();
 
-    Vector v;
-    if(!Vector_create(&v, sizeof(tNodo))) {
-        return 0;
-    }
-
-    Game_init(&v, game,"La IEEE 754 llego al barrio",
+    Game_init(game,"La IEEE 754 llego al barrio",
                                                 SDL_WINDOWPOS_UNDEFINED,
                                                 SDL_WINDOWPOS_UNDEFINED,
                                                 800,
@@ -38,7 +33,7 @@ int main(int argc, char *argv[]){
     while(Game_isRunning(game)){
         Game_handleEvents(game);
         Game_update(game);
-        Game_render(&v,game);
+        Game_render(game);
     }
 
     Game_clean(game);

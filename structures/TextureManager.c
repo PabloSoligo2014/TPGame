@@ -1,7 +1,20 @@
 #include "TextureManager.h"
 
+int Texture_Create(){
+
+    int result = Vector_create(&VecTex, 5);
+    if(!result){
+        return -1;
+    }
+    return 1;
+}
+
+void Texture_delete(){
+    free(VecTex.vec);
+}
+
 // Funcion para cargar una imagen o el primer frame de una en caso de ser animacion
-bool TextureManager_load(Vector *v, const char* fileName, const char* id, SDL_Renderer* pRenderer, int x, int y, int ancho, int alto){
+bool TextureManager_load(const char* fileName, const char* id, SDL_Renderer* pRenderer, int x, int y, int ancho, int alto){
     SDL_Surface* pTempSurface = IMG_Load(fileName);
 
     if(pTempSurface == 0){
@@ -19,12 +32,12 @@ bool TextureManager_load(Vector *v, const char* fileName, const char* id, SDL_Re
         tex.m_textureMap = pTexture;        // Imagen
         strncpy(tex.id, id, CAPACIDAD - 1); // id de la imagen
         tex.id[CAPACIDAD - 1] = '\0';
-        tex.x = x;                          // Pos horizontal de que parte de la imagen tomamos (pixeles)
-        tex.y = y;                          // Pos vertical de que parte de la imagen tomamos (pixeles)
+        tex.x = x;                          // Pos horizontal de que parte de la imagen tomamos
+        tex.y = y;                          // Pos vertical de que parte de la imagen tomamos
         tex.alto = alto;                    // Que tan alta es la imagen (pixeles)
         tex.ancho = ancho;                  // Que tan ancha es la imagen (pixeles)
 
-        if(!Vector_insertInOrder(v, &tex, sizeof(t_map), compararTex)){
+        if(!Vector_insertInOrderNoRepeat(&VecTex, &tex, sizeof(t_map), compararTex)){
             return false;
         }
 
@@ -36,12 +49,12 @@ bool TextureManager_load(Vector *v, const char* fileName, const char* id, SDL_Re
 }
 
 //Funcion para mostrar una imagen estatica
-void TextureManager_draw(Vector *v, const char* id, int x, int y, SDL_Renderer* pRenderer, SDL_RendererFlip flip){ //Funcion para cargar una imagen estatica
+void TextureManager_draw(const char* id, int x, int y, SDL_Renderer* pRenderer, SDL_RendererFlip flip){ //Funcion para cargar una imagen estatica
 
     SDL_Rect srcRect;
     SDL_Rect destRect;
 
-    void* nodo = Vector_bsearch(v, (void*)id, compararIdTex);
+    void* nodo = Vector_bsearch(&VecTex, (void*)id, compararIdTex);
 
     if(nodo == NULL){
         printf("Error, la id '%s' no se encuentra.\n", id);
@@ -64,12 +77,12 @@ void TextureManager_draw(Vector *v, const char* id, int x, int y, SDL_Renderer* 
 }
 
 // Funcion para animar una imagen
-void TextureManager_drawFrame(Vector *v, const char* id, int x, int y, int currentRow, int currentFrame, SDL_Renderer *pRenderer, SDL_RendererFlip flip){
+void TextureManager_drawFrame(const char* id, int x, int y, int currentRow, int currentFrame, SDL_Renderer *pRenderer, SDL_RendererFlip flip){
 
     SDL_Rect srcRect;
     SDL_Rect destRect;
 
-    void* nodo = Vector_bsearch(v, (void*)id, compararIdTex);
+    void* nodo = Vector_bsearch(&VecTex, (void*)id, compararIdTex);
 
     if(nodo == NULL){
         printf("Error, la id '%s' no se encuentra.\n", id);
