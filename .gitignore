@@ -18,3 +18,5 @@
 *.la
 *.pc
 *.zip
+*.layout
+*.depend
