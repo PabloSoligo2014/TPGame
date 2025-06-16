@@ -26,6 +26,12 @@ Game* Game_create(){
     game->window = NULL;
     game->renderer = NULL;
     game->isRunning = false;
+
+    int result = Vector_create(&game->objVec, 5);
+    if(!result) {
+        return NULL;
+    }
+
     return game;
 }
 
@@ -56,42 +62,50 @@ void Game_init(Game* game, const char* title, int x, int y, int w, int h, int fl
         return;
     }
 
+
     TextureManager_load("assets/1945.png", "Subamarino", game->renderer, 367, 103, 33, 98);
     TextureManager_load("assets/1945.png", "Kaboom", game->renderer, 70, 169, 33, 32);
     TextureManager_load("assets/1945.png", "Nave Acercamiento", game->renderer, 300, 4, 99, 98);
     TextureManager_load("assets/animate-alpha.png", "Puma", game->renderer, 0, 0, 128, 82);
     TextureManager_load("assets/aviones.png", "4", game->renderer, 0, 110, 110, 110);
+
+    //GameObject go1;
+    Player pl1;
+
+
+    //Vector_insertInOrderNoRepeat(&(game->objVec), GameObject_create(&go1, "Nave Acercamiento", "Player",100, 100), sizeof(GameObject), compararObjectID);
+    //Vector_insertInOrderNoRepeat(&(game->objVec), GameObject_create(&go1, "Kaboom", "Gokuuu",200, 200), sizeof(GameObject), compararObjectID);
+    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "4", "Prota2", 100, 250), sizeof(Player), compararObjectID);
+    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "4", "Prota3", 3, 400), sizeof(Player), compararObjectID);
+    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "Puma", "Prota4", 200, 250), sizeof(Player), compararObjectID);
+    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "Nave Acercamiento", "Prota8", 100, 100), sizeof(Player), compararObjectID);
+    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "Subamarino", "Prota10", 69, 69), sizeof(Player), compararObjectID);
 }
 
 void Game_update(Game *game){
-    /*
-    Generar la logica del juego
-    */
+    int i;
+    GameObject* o;
     m_currentFrame = (int)(((SDL_GetTicks() / 100) % 6)); //El 6 me limita a que las animaciones tengan 6 frames
+
+    size_t cant = Vector_count(&(game->objVec));
+    for(i=0;i<cant;i++){
+        o = Vector_getRefByPos(&(game->objVec), i);
+        update(o);
+    }
 }
 
 void Game_render(Game* game){
     //Imagenes
-
+    int i;
+    GameObject* o;
     SDL_RenderClear(game->renderer); // clear the renderer to the draw color
-
     SDL_RenderCopyEx(game->renderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 0, 0, SDL_FLIP_NONE); // pass in the horizontal flip
 
-    TextureManager_draw("Subamarino", 0, 0, game->renderer, SDL_FLIP_NONE);
-    TextureManager_drawFrame("Subamarino", 0, 100, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
-
-    TextureManager_draw("Nave Acercamiento", 150, 0, game->renderer, SDL_FLIP_NONE);
-    TextureManager_drawFrame("Nave Acercamiento", 150, 100, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
-
-    TextureManager_draw("Puma", 300, 0, game->renderer, SDL_FLIP_NONE);
-    TextureManager_drawFrame("Puma", 300, 100, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
-
-    TextureManager_draw("4", 450, 0, game->renderer, SDL_FLIP_NONE);
-    TextureManager_drawFrame("4", 450, 100, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
-
-    TextureManager_draw("Kaboom", 600, 0, game->renderer, SDL_FLIP_NONE);
-    TextureManager_drawFrame("Kaboom", 600, 100, 1, m_currentFrame, game->renderer, SDL_FLIP_NONE);
-
+    size_t cant = Vector_count(&(game->objVec));
+    for(i=0;i<cant;i++){
+        o = Vector_getRefByPos(&(game->objVec), i);
+        draw(o, game->renderer);
+    }
     SDL_RenderPresent(game->renderer); // draw to the screen
 }
 

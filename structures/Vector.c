@@ -142,6 +142,20 @@ int Vector_getByPos(Vector* v, int pos, void * valor, size_t tamValor){
     return -1;//si la posicion es incorrecta
 }
 
+void* Vector_getRefByPos(Vector* v, int pos){
+
+
+    if(pos>=v->ce){
+        return NULL;
+    }
+    return (v->vec+pos)->dato;
+
+}
+
+size_t Vector_count(Vector* v){
+    return v->ce;
+}
+
 int _resize(Vector* v,size_t nuevoTamanio){
 
   void * nv = realloc((void*)v->vec,nuevoTamanio*(sizeof(tNodo)));

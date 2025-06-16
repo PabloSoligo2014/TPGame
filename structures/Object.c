@@ -10,7 +10,7 @@ int cmp_method(const void* a, const void* b){
 }
 
 
-
+// CONSTRUCTOR
 void* Object_create(Object* self){
     static const char dtype[DTYPE_LENGTH] = OBJECT_TYPE_DESCRIPTOR;
     self->dtype = dtype;
@@ -88,7 +88,7 @@ void Object_destroy(Object* self){
 void _method_assign(Vector* v, TMethod* methods, unsigned methodCount){
 
     for(int i = 0; i < methodCount; i++){
-        Vector_insertInOrder(v, &methods[i], sizeof(TMethod), cmp_method);
+        Vector_insertInOrderNoRepeat(v, &methods[i], sizeof(TMethod), cmp_method);
     }
 }
 

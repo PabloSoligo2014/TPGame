@@ -56,6 +56,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="structures/Object.h" />
+		<Unit filename="structures/Player.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="structures/Player.h" />
 		<Unit filename="structures/TextureManager.c">
 			<Option compilerVar="CC" />
 		</Unit>

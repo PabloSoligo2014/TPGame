@@ -29,4 +29,6 @@ int Vector_getByPos(Vector* v, int pos, void * valor, size_t tamValor);
 void* Vector_bsearch(Vector *v, void * valor, Cmp cmp);
 int compararInt(const void* a, const void* b);
 void Vector_map(Vector*v,Accion accion);
+void* Vector_getRefByPos(Vector* v, int pos);
+size_t Vector_count(Vector* v);
 #endif // VECTOR_H_INCLUDED

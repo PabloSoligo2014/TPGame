@@ -5,6 +5,7 @@
 #include "Entities.h"
 #include "Vector.h"
 #include "TextureManager.h"
+#include "Player.h"
 #include <SDL2/SDL.h>
 
 typedef struct{
@@ -12,6 +13,7 @@ typedef struct{
     SDL_Renderer* renderer;
     int delay;
     bool isRunning;
+    Vector objVec;
 } Game;
 
 Game* Game_create();

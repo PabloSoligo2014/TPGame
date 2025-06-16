@@ -34,6 +34,7 @@ int main(int argc, char *argv[]){
         Game_handleEvents(game);
         Game_update(game);
         Game_render(game);
+        SDL_Delay(10);
     }
 
     Game_clean(game);
