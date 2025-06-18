@@ -6,6 +6,8 @@
 #include "Vector.h"
 #include "TextureManager.h"
 #include "Player.h"
+#include "Enemy.h"
+#include "InputHandler.h"
 #include <SDL2/SDL.h>
 
 typedef struct{

@@ -43,6 +43,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="structures/Enemy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="structures/Enemy.h" />
 		<Unit filename="structures/Entities.h" />
 		<Unit filename="structures/Game.c">
 			<Option compilerVar="CC" />
@@ -52,6 +56,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="structures/GameObject.h" />
+		<Unit filename="structures/InputHandler.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="structures/InputHandler.h" />
 		<Unit filename="structures/Object.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -68,6 +76,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="structures/Vector.h" />
+		<Unit filename="structures/Vector2D.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="structures/Vector2D.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

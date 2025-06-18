@@ -62,30 +62,30 @@ void Game_init(Game* game, const char* title, int x, int y, int w, int h, int fl
         return;
     }
 
-
+    // Se cargan las texturas
     TextureManager_load("assets/1945.png", "Subamarino", game->renderer, 367, 103, 33, 98);
     TextureManager_load("assets/1945.png", "Kaboom", game->renderer, 70, 169, 33, 32);
     TextureManager_load("assets/1945.png", "Nave Acercamiento", game->renderer, 300, 4, 99, 98);
     TextureManager_load("assets/animate-alpha.png", "Puma", game->renderer, 0, 0, 128, 82);
     TextureManager_load("assets/aviones.png", "4", game->renderer, 0, 110, 110, 110);
+    TextureManager_load("assets/aircrafts.png", "Avion_8", game->renderer, 194, 619, 94, 76);
+    TextureManager_load("assets/aircrafts.png", "Avion_10", game->renderer, 322, 618, 94, 76);
 
-    //GameObject go1;
+    // Se crean objetos
+    Enemy go1;
     Player pl1;
 
-
-    //Vector_insertInOrderNoRepeat(&(game->objVec), GameObject_create(&go1, "Nave Acercamiento", "Player",100, 100), sizeof(GameObject), compararObjectID);
-    //Vector_insertInOrderNoRepeat(&(game->objVec), GameObject_create(&go1, "Kaboom", "Gokuuu",200, 200), sizeof(GameObject), compararObjectID);
-    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "4", "Prota2", 100, 250), sizeof(Player), compararObjectID);
-    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "4", "Prota3", 3, 400), sizeof(Player), compararObjectID);
-    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "Puma", "Prota4", 200, 250), sizeof(Player), compararObjectID);
-    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "Nave Acercamiento", "Prota8", 100, 100), sizeof(Player), compararObjectID);
-    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "Subamarino", "Prota10", 69, 69), sizeof(Player), compararObjectID);
+    Vector_insertInOrderNoRepeat(&(game->objVec), Enemy_create(&go1, "Avion_8", "Enemigo1",100, 100), sizeof(GameObject), compararObjectID);
+    Vector_insertInOrderNoRepeat(&(game->objVec), Enemy_create(&go1, "Avion_10", "Enemigo2",200, 200), sizeof(GameObject), compararObjectID);
+    Vector_insertInOrderNoRepeat(&(game->objVec), Enemy_create(&go1, "Avion_8", "Enemigo3",500, 450), sizeof(GameObject), compararObjectID);
+    Vector_insertInOrderNoRepeat(&(game->objVec), Enemy_create(&go1, "Avion_10", "Enemigo4",450, 300), sizeof(GameObject), compararObjectID);
+    Vector_insertInOrderNoRepeat(&(game->objVec), Player_create(&pl1, "Puma", "Player", 200, 250), sizeof(Player), compararObjectID);
 }
 
 void Game_update(Game *game){
+    // Logica del juego
     int i;
     GameObject* o;
-    m_currentFrame = (int)(((SDL_GetTicks() / 100) % 6)); //El 6 me limita a que las animaciones tengan 6 frames
 
     size_t cant = Vector_count(&(game->objVec));
     for(i=0;i<cant;i++){
@@ -95,7 +95,7 @@ void Game_update(Game *game){
 }
 
 void Game_render(Game* game){
-    //Imagenes
+    // Dibujado a pantalla
     int i;
     GameObject* o;
     SDL_RenderClear(game->renderer); // clear the renderer to the draw color
@@ -111,6 +111,7 @@ void Game_render(Game* game){
 
 void Game_handleEvents(Game* game){
     SDL_Event event;
+
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT || event.key.keysym.sym == SDLK_ESCAPE) {
             game->isRunning = false;
@@ -127,6 +128,10 @@ void Game_clean(Game* game){
     if (game->renderer) SDL_DestroyRenderer(game->renderer);
     if (game->window) SDL_DestroyWindow(game->window);
     SDL_Quit();
+
+    // Eliminar objetos primero con destroy
+    // TODO: Implementar destroy de objetos
+    Vector_destroy(&game->objVec);
     free(game);
 }
 

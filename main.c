@@ -11,6 +11,9 @@
 #include "structures/Vector.h"
 #include "structures/Game.h"
 
+#define FPS 60
+#define DELAY_TIME 1000.0f / FPS
+
 /*Pablo Soligo. Plantilla de proyecto codeblocks para proyectos SDL.
 Funciona con mingw 64 bits y no requiere tener instalado SDL.
 Los fuentes son multiplataforma (windows/linux Debian;Ubuntu). Para ubuntu se
@@ -20,6 +23,8 @@ configurados a la biblioteca SDL.
 */
 
 int main(int argc, char *argv[]){
+    Uint32 frameStart, frameTime;
+
     Game* game=Game_create();
 
     Game_init(game,"La IEEE 754 llego al barrio",
@@ -31,10 +36,17 @@ int main(int argc, char *argv[]){
                                                 100);
 
     while(Game_isRunning(game)){
+        frameStart = SDL_GetTicks();
+
         Game_handleEvents(game);
         Game_update(game);
         Game_render(game);
-        SDL_Delay(10);
+
+        frameTime = SDL_GetTicks() - frameStart;
+
+        if(frameTime < DELAY_TIME) {
+            SDL_Delay((int)(DELAY_TIME - frameTime));
+        }
     }
 
     Game_clean(game);
