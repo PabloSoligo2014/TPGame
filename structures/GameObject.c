@@ -46,7 +46,7 @@ void* GameObject_create(GameObject* self, char* textureID, char* objectID, float
     GameObject_setVelocity(self, vel);
 
     // Busco en el vector de texturas el ancho y alto de la textura
-    void* nodo = Vector_bsearch(&VecTex, (void*)textureID, compararIdTex);
+    void* nodo = Vector_bsearch(&getInstance()->Vectex, (void*)textureID, compararIdTex);
     if(nodo == NULL){
         printf("Error, la id '%s' no se encuentra.\n", textureID);
         return NULL;

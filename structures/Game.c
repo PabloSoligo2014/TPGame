@@ -57,8 +57,8 @@ void Game_init(Game* game, const char* title, int x, int y, int w, int h, int fl
     game->delay = delay;
     game->isRunning = true;
 
-    int result = Texture_Create();
-    if(!result){
+    void* result = getInstance();
+    if(result==NULL){
         return;
     }
 

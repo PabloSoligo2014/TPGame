@@ -20,7 +20,11 @@ typedef struct{                 // 74 bytes
     char id[CAPACIDAD];         // 50 bytes
 }t_map;
 
-Vector VecTex;
+typedef struct{
+    Vector Vectex;
+}TextureSingleton;
+
+TextureSingleton* getInstance();
 
 int Texture_Create();
 

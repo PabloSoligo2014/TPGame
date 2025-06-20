@@ -1,16 +1,32 @@
 #include "TextureManager.h"
 
-int Texture_Create(){
+static TextureSingleton* instance = NULL;
 
-    int result = Vector_create(&VecTex, 5);
-    if(!result){
-        return -1;
+TextureSingleton* getInstance(){
+
+    if (instance == NULL) {
+
+        instance = (TextureSingleton*)malloc(sizeof(TextureSingleton));
+
+        if (instance != NULL) {
+
+            int result = Vector_create(&(instance->Vectex), 5); // Inicialización de ejemplo
+            if(!result){
+                return NULL;
+            }
+        }
+
     }
-    return 1;
+
+    return instance;
+
 }
 
 void Texture_delete(){
-    free(VecTex.vec);
+    if (instance != NULL){
+        free(instance);
+        instance = NULL;
+    }
 }
 
 // Funcion para cargar una imagen o el primer frame de una en caso de ser animacion
@@ -37,7 +53,7 @@ bool TextureManager_load(const char* fileName, const char* id, SDL_Renderer* pRe
         tex.alto = alto;                    // Que tan alta es la imagen (pixeles)
         tex.ancho = ancho;                  // Que tan ancha es la imagen (pixeles)
 
-        if(!Vector_insertInOrderNoRepeat(&VecTex, &tex, sizeof(t_map), compararTex)){
+        if(!Vector_insertInOrderNoRepeat(&getInstance()->Vectex, &tex, sizeof(t_map), compararTex)){
             return false;
         }
 
@@ -54,7 +70,7 @@ void TextureManager_draw(const char* id, int x, int y, SDL_Renderer* pRenderer, 
     SDL_Rect srcRect;
     SDL_Rect destRect;
 
-    void* nodo = Vector_bsearch(&VecTex, (void*)id, compararIdTex);
+    void* nodo = Vector_bsearch(&getInstance()->Vectex, (void*)id, compararIdTex);
 
     if(nodo == NULL){
         printf("Error, la id '%s' no se encuentra.\n", id);
@@ -82,7 +98,7 @@ void TextureManager_drawFrame(const char* id, int x, int y, int currentRow, int 
     SDL_Rect srcRect;
     SDL_Rect destRect;
 
-    void* nodo = Vector_bsearch(&VecTex, (void*)id, compararIdTex);
+    void* nodo = Vector_bsearch(&getInstance()->Vectex, (void*)id, compararIdTex);
 
     if(nodo == NULL){
         printf("Error, la id '%s' no se encuentra.\n", id);
